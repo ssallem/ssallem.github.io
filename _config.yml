@@ -75,7 +75,7 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 :  "/assets/images/logo.png" # Open Graph/Twitter default site image
+og_image                 :  "/assets/images/logo.jpg" # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
@@ -94,7 +94,7 @@ analytics:
 # Site Author
 author:
   name             : "김성주 👱‍♀️"
-  avatar           : "https://github.com/ssallem/ssallem.github.io/blob/ssallem/assets/images/logo.png"
+  avatar           : "https://github.com/ssallem/ssallem.github.io/blob/ssallem/assets/images/logo.jpg"
   bio              : "반갑습니다 :)"
   #location         : "Seoul, South Korea"
   links:
