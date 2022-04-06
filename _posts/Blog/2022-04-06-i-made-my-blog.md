@@ -14,9 +14,9 @@ date: 2022-04-06
 last_modified_at: 2022-04-06
 ---
 
-:+1: [jekyll 한글 문서 페이지](https://jekyllrb-ko.github.io/) :+1: 참고
+📌 [jekyll 한글 문서 페이지](https://jekyllrb-ko.github.io/)
 
-참조 사이트 : https://ansohxxn.github.io/blog/posting/
+:thumbsup: [참조 사이트 : ansohxxn.github.io](https://ansohxxn.github.io/blog/posting/)
 
 ---
 <br>
