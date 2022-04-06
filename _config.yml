@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "dark" # "default"  "air", "aqua", "contrast", , "dir
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : " ssallem Tech Blog 🛬"
+title                    : " ssallem's Tech Blog 🛬"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "ssallem 👋"
@@ -87,13 +87,13 @@ social:
 analytics:
   provider               : "google" # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          : "UA-169251732-1"
+    tracking_id          : "UA-224523212-2"
     anonymize_ip         : false # true, false (default)
 
 
 # Site Author
 author:
-  name             : "김성주 👱‍♀️"
+  name             : "김성주2 👱‍♀️"
   avatar           : "https://github.com/ssallem/ssallem.github.io/blob/ssallem/assets/images/logo3.png"
   bio              : "반갑습니다 :)"
   #location         : "Seoul, South Korea"
