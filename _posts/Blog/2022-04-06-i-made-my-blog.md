@@ -1,7 +1,7 @@
 ---
 title:  "[Github Tech Blog] 깃허브(Github) 블로그를 생성" 
 excerpt: "Jekyll로 깃허브 블로그를 만들어 보았다."
-
+ 
 categories:
   - Blog
 tags:
@@ -16,11 +16,13 @@ last_modified_at: 2022-04-06
 
 :+1: [jekyll 한글 문서 페이지](https://jekyllrb-ko.github.io/) :+1: 참고
 
+참조 사이트 : https://ansohxxn.github.io/blog/posting/
+
 ---
 <br>
 
 # 1. 첫 포스트 : _post 올리기
-
+:emoji: 
 `ssallem.github.io`
 
 <br>
