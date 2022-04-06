@@ -94,7 +94,7 @@ analytics:
 # Site Author
 author:
   name             : "김성주 입니다."
-  avatar           : "https://github.com/ssallem/ssallem.github.io/blob/ssallem/assets/images/ssallem.png"
+  avatar           : "/assets/images/ssallem.jpg" # "https://github.com/ssallem/ssallem.github.io/blob/ssallem/assets/images/ssallem.png"
   bio              : "반갑습니다~ :)"
   #location         : "Seoul, South Korea"
   links:
