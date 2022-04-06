@@ -22,8 +22,8 @@ last_modified_at: 2022-04-06
 <br>
 
 # 1. 첫 포스트 : _post 올리기
-:emoji: 
-`ssallem.github.io`
+
+# ssallem.github.io
 
 <br>
 
