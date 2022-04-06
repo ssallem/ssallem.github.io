@@ -16,7 +16,7 @@ last_modified_at: 2022-04-06
 
 📌 [jekyll 한글 문서 페이지](https://jekyllrb-ko.github.io/)
 
-:thumbsup: [참조 사이트 : ansohxxn.github.io](https://ansohxxn.github.io/blog/posting/)
+👍 [참조 사이트 : ansohxxn.github.io](https://ansohxxn.github.io/blog/posting/)
 
 ---
 <br>
