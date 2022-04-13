@@ -24,14 +24,14 @@ evernote2md (flags) [input] [outputDir]
 ```
 <br>
 
-📌 [evernote2md.exe](file/evernote2md.exe)
+📌 [evernote2md.exe](/file/evernote2md.exe)
 
 <br>
 
 # 2. 변환할 Evernote 노트들을 1개 폴더에 모아둔다.
-![everMarkdowntomd.png](image/everMarkdowntomd.png)
+![everMarkdowntomd.png](/image/everMarkdowntomd.png)
 
-![everMarkdownmd2.png](image/everMarkdownmd2.png)
+![everMarkdownmd2.png](/image/everMarkdownmd2.png)
 
 ```
 선택된 노트 관련된 Category 폴더에 Enex 확장자로 내보내기 후 
@@ -39,4 +39,4 @@ evernote2md (flags) [input] [outputDir]
 ```
 
 # 3. evernote2md.exe 파일로 해당 명령어를 입력한다. 😄
-![everMarkdownmd3.png](image/everMarkdownmd3.png)
+![everMarkdownmd3.png](/image/everMarkdownmd3.png)
