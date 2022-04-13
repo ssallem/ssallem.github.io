@@ -20,11 +20,11 @@ last_modified_at: 2022-04-13
 ```
 ### How to use
 
-evernote2md \(flags\) \[input\] \[outputDir\]
+evernote2md (flags) [input] [outputDir]
 ```
 <br>
 
-📌 [evernote2md.exe](./file/evernote2md.exe)
+📌 [evernote2md.exe](file/evernote2md.exe)
 
 <br>
 
