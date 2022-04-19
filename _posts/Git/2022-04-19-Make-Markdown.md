@@ -3,9 +3,9 @@ title:  "[공통] 마크다운 markdown 작성법"
 excerpt: "Github makrdown 문법"
  
 categories:
-  - Blog
+  - Git
 tags:
-  - [Blog, Github, makrdown]
+  - [Blog, Git, Github, makrdown]
 
 toc: true
 toc_sticky: true
