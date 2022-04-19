@@ -5,7 +5,7 @@ excerpt: "Github makrdown 문법"
 categories:
   - Blog
 tags:
-  - [Github, makrdown]
+  - [Blog, Github, makrdown]
 
 toc: true
 toc_sticky: true
