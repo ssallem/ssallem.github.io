@@ -17,7 +17,7 @@ last_modified_at: 2022-04-13
 ## 1. evernote2md 파일을 다운로드 한다. ⏬
 [Evernote2Md Github](https://github.com/wormi4ok/evernote2md)
 
-```
+```powershell
 ### How to use
 
 evernote2md (flags) [input] [outputDir]
