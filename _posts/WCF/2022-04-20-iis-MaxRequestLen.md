@@ -26,7 +26,7 @@ last_modified_at: 2022-04-20
 
 **예** : 업로드를 15MB로 제한하려면 maxRequestLength를“15360” (`15 x 1024`)으로 설정하십시오.
 
-```
+```html
 <system.web>
    <!-- maxRequestLength for asp.net, in KB -->
    <httpRuntime maxRequestLength="15360" ></httpRuntime>
@@ -45,7 +45,7 @@ files.IIS7을 업로드 여기에 사용되는 약간 다른 방법이 도입 **
 
 **예** : 업로드를 15MB로 제한하려면 maxRequestLength를 “15360”으로 설정하고 maxAllowedContentLength를 “15728640” `15 x 1024 x 1024`으로 설정하십시오.
 
-```
+```html
 <system.web>
    <!-- maxRequestLength for asp.net, in KB -->
    <httpRuntime maxRequestLength="15360" ></httpRuntime>
