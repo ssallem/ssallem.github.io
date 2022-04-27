@@ -1,6 +1,6 @@
 ---
-title:  "[RStudio Cloud & Rmarkdown]" 
-excerpt: "RStudio Cloud 사용하여 Rmd(Rmarkdown) 테스트"
+title:  "[RStudio Cloud 사용법 정리]" 
+excerpt: "RStudio Cloud 사용법 정리"
  
 categories:
   - Rcode
@@ -16,10 +16,12 @@ last_modified_at: 2022-04-27
 
 ## 1. Rstudio Cloud 가입 & 프로젝트 생성 💫
 
-> ## [Rstudio Cloud](https://rstudio.cloud/)
+> ## ![image](https://user-images.githubusercontent.com/24688100/165420682-c9bbf40e-4127-4c46-9f14-b71cb25a46de.png) https://rstudio.cloud/
 
-이미지 삽입
 <br>
+
+![image](https://user-images.githubusercontent.com/24688100/165420872-99be5207-9cc2-47e3-9b3e-77c702d25d88.png)
+
 
 > ### ① New Project로 R studio Project를 생성한다.
 > ### ② Github에 R관련 Repository를 하나 생성후 연결 시켜서 R Project를 연동도 가능하다.
@@ -30,7 +32,8 @@ last_modified_at: 2022-04-27
 
 ## 2. 기본 프로젝트 설정
 
-이미지 삽입
+![image](https://user-images.githubusercontent.com/24688100/165420932-a9b76e23-b52d-4ef1-9d8a-ace2b89144f2.png)
+
 <br>
 
 > ### ① 먼저 Space를 생성한 후에 Space 내에서 프로젝트 생성이 가능하다.
@@ -42,7 +45,9 @@ last_modified_at: 2022-04-27
 
 ## 3. RStudio Cloud 사용법
 
-이미지 삽입
+![image](https://user-images.githubusercontent.com/24688100/165420994-45286229-0674-445d-b0c0-3867ef21079a.png)
+
+
 <br>
 
 > ### ① 기본적인 사용법은 기존 R Stuio와 동일하다.
