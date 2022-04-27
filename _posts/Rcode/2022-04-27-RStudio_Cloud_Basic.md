@@ -59,10 +59,10 @@ last_modified_at: 2022-04-27
 
 | Name | Site |
 | ------ | ------ |
-| R Markdown Gallary | [https://rmarkdown.rstudio.com/gallery.html] |
-| Flexdashboard help | [https://pkgs.rstudio.com/flexdashboard/] |
-| Publish Html, R 배포 | [https://rpubs.com/] |
-| Htmlwidgets for R - Gallary | [http://gallery.htmlwidgets.org/] |
+| R Markdown Gallary | <https://rmarkdown.rstudio.com/gallery.html> |
+| Flexdashboard help | <https://pkgs.rstudio.com/flexdashboard/> |
+| Publish Html, R 배포 | <https://rpubs.com/> |
+| Htmlwidgets for R - Gallary | <http://gallery.htmlwidgets.org/> |
 
 
 <br>
