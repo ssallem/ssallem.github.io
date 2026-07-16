@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 여름방학 활동 설계도</title>
+<style>
+  /* ── Design tokens ─────────────────────────────── */
+  :root {
+    --paper: #F3F5F8;
+    --sheet: #FFFFFF;
+    --ink: #18222E;
+    --ink-soft: #57626F;
+    --line: #D6DDE4;
+    --line-faint: rgba(36, 86, 184, 0.07);
+    --blue: #2456B8;
+    --blue-ink: #1D479A;
+    --blue-soft: rgba(36, 86, 184, 0.08);
+    --open: #1F7A45;
+    --open-soft: rgba(31, 122, 69, 0.10);
+    --urgent: #C05017;
+    --urgent-soft: rgba(192, 80, 23, 0.10);
+    --closed: #78828C;
+    --closed-soft: rgba(120, 130, 140, 0.12);
+    --sand: #A07B28;
+    --sand-soft: rgba(160, 123, 40, 0.14);
+    --bar-text: #FFFFFF;
+    --shadow: 0 1px 2px rgba(24, 34, 46, 0.05), 0 4px 16px rgba(24, 34, 46, 0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0E1520;
+      --sheet: #16202E;
+      --ink: #E5EBF3;
+      --ink-soft: #9BA8B7;
+      --line: #2B3748;
+      --line-faint: rgba(122, 162, 235, 0.06);
+      --blue: #7AA2EB;
+      --blue-ink: #A3BFF3;
+      --blue-soft: rgba(122, 162, 235, 0.12);
+      --open: #57BD84;
+      --open-soft: rgba(87, 189, 132, 0.13);
+      --urgent: #E8925E;
+      --urgent-soft: rgba(232, 146, 94, 0.13);
+      --closed: #78828C;
+      --closed-soft: rgba(120, 130, 140, 0.18);
+      --sand: #CBA355;
+      --sand-soft: rgba(203, 163, 85, 0.16);
+      --bar-text: #10161F;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0E1520;
+    --sheet: #16202E;
+    --ink: #E5EBF3;
+    --ink-soft: #9BA8B7;
+    --line: #2B3748;
+    --line-faint: rgba(122, 162, 235, 0.06);
+    --blue: #7AA2EB;
+    --blue-ink: #A3BFF3;
+    --blue-soft: rgba(122, 162, 235, 0.12);
+    --open: #57BD84;
+    --open-soft: rgba(87, 189, 132, 0.13);
+    --urgent: #E8925E;
+    --urgent-soft: rgba(232, 146, 94, 0.13);
+    --closed: #78828C;
+    --closed-soft: rgba(120, 130, 140, 0.18);
+    --sand: #CBA355;
+    --sand-soft: rgba(203, 163, 85, 0.16);
+    --bar-text: #10161F;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.25);
+  }
+  :root[data-theme="light"] {
+    --paper: #F3F5F8;
+    --sheet: #FFFFFF;
+    --ink: #18222E;
+    --ink-soft: #57626F;
+    --line: #D6DDE4;
+    --line-faint: rgba(36, 86, 184, 0.07);
+    --blue: #2456B8;
+    --blue-ink: #1D479A;
+    --blue-soft: rgba(36, 86, 184, 0.08);
+    --open: #1F7A45;
+    --open-soft: rgba(31, 122, 69, 0.10);
+    --urgent: #C05017;
+    --urgent-soft: rgba(192, 80, 23, 0.10);
+    --closed: #78828C;
+    --closed-soft: rgba(120, 130, 140, 0.12);
+    --sand: #A07B28;
+    --sand-soft: rgba(160, 123, 40, 0.14);
+    --bar-text: #FFFFFF;
+    --shadow: 0 1px 2px rgba(24, 34, 46, 0.05), 0 4px 16px rgba(24, 34, 46, 0.06);
+  }
+
+  /* ── Base ──────────────────────────────────────── */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--line-faint) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-faint) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--ink);
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', -apple-system, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono {
+    font-family: 'Cascadia Code', 'SF Mono', 'Consolas', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  a { color: var(--blue-ink); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 40px 20px 64px;
+  }
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+
+  /* ── Title block (도면 표제란) ──────────────────── */
+  .titleblock {
+    background: var(--sheet);
+    border: 1.5px solid var(--ink);
+    box-shadow: var(--shadow);
+  }
+  .tb-head {
+    padding: 28px 28px 22px;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .tb-eyebrow {
+    font-family: 'Cascadia Code', 'SF Mono', 'Consolas', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .tb-head h1 {
+    font-size: clamp(24px, 4.5vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+  .tb-head p {
+    margin: 10px 0 0;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+  .tb-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .tb-meta > div {
+    padding: 12px 16px;
+    border-right: 1px solid var(--line);
+  }
+  .tb-meta > div:last-child { border-right: none; }
+  .tb-meta dt {
+    font-family: 'Cascadia Code', 'SF Mono', 'Consolas', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin: 0 0 2px;
+  }
+  .tb-meta dd { margin: 0; font-size: 13.5px; font-weight: 600; }
+  @media (max-width: 640px) {
+    .tb-meta { grid-template-columns: repeat(2, 1fr); }
+    .tb-meta > div:nth-child(2) { border-right: none; }
+    .tb-meta > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  }
+
+  /* ── Urgent strip (지금 해야 할 일) ─────────────── */
+  .todo-strip {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 700px) { .todo-strip { grid-template-columns: 1fr; } }
+  .todo {
+    background: var(--sheet);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--blue);
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+  .todo.hot { border-top-color: var(--urgent); }
+  .todo .when {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    font-family: 'Cascadia Code', 'SF Mono', 'Consolas', monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .todo .dday {
+    font-weight: 700;
+    color: var(--urgent);
+    background: var(--urgent-soft);
+    padding: 1px 8px;
+    border-radius: 99px;
+  }
+  .todo .dday.calm { color: var(--open); background: var(--open-soft); }
+  .todo strong { display: block; margin-top: 6px; font-size: 15px; letter-spacing: -0.01em; }
+  .todo span.sub { display: block; font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+
+  /* ── Section notes ─────────────────────────────── */
+  section { margin-top: 52px; }
+  .note-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid var(--ink);
+    margin-bottom: 20px;
+  }
+  .note-no {
+    font-family: 'Cascadia Code', 'SF Mono', 'Consolas', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    white-space: nowrap;
+  }
+  .note-head h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.015em; }
+  .note-head .hint { margin-left: auto; font-size: 12.5px; color: var(--ink-soft); white-space: nowrap; }
+  @media (max-width: 640px) { .note-head .hint { display: none; } }
+
+  /* ── Cards ─────────────────────────────────────── */
+  .cards { display: grid; gap: 14px; }
+  .card {
+    background: var(--sheet);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    padding: 20px 22px;
+  }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .card h3 { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.4; }
+  .card .cat {
+    font-family: 'Cascadia Code', 'SF Mono', 'Consolas', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 11px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+  .pill::before {
+    content: "";
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .pill.open   { color: var(--open);   background: var(--open-soft); }
+  .pill.soon   { color: var(--urgent); background: var(--urgent-soft); }
+  .pill.always { color: var(--blue);   background: var(--blue-soft); }
+  .pill.closed { color: var(--closed); background: var(--closed-soft); }
+  .dates {
+    font-family: 'Cascadia Code', 'SF Mono', 'Consolas', monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 8px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+  }
+  .dates b { color: var(--urgent); font-weight: 700; }
+  .card p.desc { margin: 10px 0 0; font-size: 14.5px; max-width: 68ch; }
+  .card p.desc + p.desc { margin-top: 6px; }
+  .card .links { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 7px 14px;
+    border: 1.5px solid var(--blue);
+    color: var(--blue-ink);
+    background: transparent;
+    transition: background-color 0.15s ease;
+  }
+  .btn.primary { background: var(--blue); color: var(--sheet); }
+  .btn:hover { background: var(--blue-soft); }
+  .btn.primary:hover { background: var(--blue-ink); }
+  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+  .best {
+    border-left: 4px solid var(--blue);
+  }
+  .best-tag {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--sheet);
+    background: var(--blue);
+    padding: 2px 9px;
+    margin-right: 8px;
+    vertical-align: 2px;
+  }
+
+  /* ── Closed list (내년 캘린더) ──────────────────── */
+  .closed-list { display: grid; gap: 0; background: var(--sheet); border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .closed-row {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .closed-row:last-child { border-bottom: none; }
+  .closed-row .month {
+    font-family: 'Cascadia Code', 'SF Mono', 'Consolas', monospace;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--sand);
+    background: var(--sand-soft);
+    text-align: center;
+    padding: 4px 0;
+    border-radius: 3px;
+  }
+  .closed-row .what strong { font-size: 14.5px; }
+  .closed-row .what span { display: block; font-size: 13px; color: var(--ink-soft); }
+  .closed-row a { font-size: 13px; white-space: nowrap; }
+  @media (max-width: 640px) {
+    .closed-row { grid-template-columns: 84px 1fr; }
+    .closed-row a { grid-column: 2; justify-self: start; }
+  }
+
+  /* ── Gantt (추천 공정표) ────────────────────────── */
+  .gantt-card {
+    background: var(--sheet);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    padding: 22px;
+    overflow-x: auto;
+  }
+  .gantt {
+    min-width: 640px;
+    display: grid;
+    grid-template-columns: 150px repeat(6, 1fr);
+    gap: 6px 0;
+    font-size: 12.5px;
+  }
+  .g-corner { grid-column: 1; }
+  .g-week {
+    font-family: 'Cascadia Code', 'SF Mono', 'Consolas', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .g-label {
+    grid-column: 1;
+    padding: 6px 12px 6px 0;
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+  }
+  .g-track {
+    grid-column: 2 / -1;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    background-image: linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: calc(100% / 6) 100%;
+  }
+  .g-bar {
+    height: 22px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cascadia Code', 'SF Mono', 'Consolas', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--bar-text);
+    margin: 3px 4px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .g-bar.major { background: var(--blue); }
+  .g-bar.serve { background: var(--open); }
+  .g-bar.field { background: var(--sand); }
+  .g-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .g-legend i {
+    display: inline-block;
+    width: 12px; height: 12px;
+    border-radius: 3px;
+    margin-right: 6px;
+    vertical-align: -1px;
+  }
+
+  /* ── Footer ────────────────────────────────────── */
+  footer {
+    margin-top: 56px;
+    padding-top: 18px;
+    border-top: 1.5px solid var(--ink);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  footer .src { line-height: 2; }
+  footer .stamp {
+    font-family: 'Cascadia Code', 'SF Mono', 'Consolas', monospace;
+    margin-top: 14px;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+  }
+</style>
+
+<div class="wrap">
+
+  <!-- 표제란 -->
+  <header class="titleblock">
+    <div class="tb-head">
+      <div class="tb-eyebrow">Summer Program — Drawing No. A-01</div>
+      <h1>2026 민준이 여름방학 활동 설계도</h1>
+      <p>집에만 있기엔 아까운 첫 대학 여름방학. 전공(건축공학)과 연결되고, Activity하고, 기억에 남는 활동만 골라 마감일 순으로 정리했습니다.</p>
+    </div>
+    <dl class="tb-meta">
+      <div><dt>Client</dt><dd>성균관대 건축공학과 1학년</dd></div>
+      <div><dt>Site</dt><dd>경기 부천 → 전국</dd></div>
+      <div><dt>Date</dt><dd class="mono">2026-07-16 기준</dd></div>
+      <div><dt>Period</dt><dd>7월 하순 – 8월 말</dd></div>
+    </dl>
+  </header>
+
+  <!-- 지금 해야 할 일 3가지 -->
+  <div class="todo-strip" role="list">
+    <div class="todo hot" role="listitem">
+      <div class="when"><span>07.27 – 07.31</span><span class="dday">D-11</span></div>
+      <strong>학생설계공모전 참가 신청</strong>
+      <span class="sub">접수 기간이 단 5일 — 캘린더에 지금 등록</span>
+    </div>
+    <div class="todo" role="listitem">
+      <div class="when"><span>8월 첫째 주</span><span class="dday calm">일정 확인</span></div>
+      <strong>해비타트 번개건축 신청</strong>
+      <span class="sub">7월 말 홈페이지 달력에 일정 공개</span>
+    </div>
+    <div class="todo" role="listitem">
+      <div class="when"><span>오늘부터</span><span class="dday calm">상시</span></div>
+      <strong>아라뱃길 라이딩으로 몸 풀기</strong>
+      <span class="sub">부천에서 자전거로 바로 출발 가능</span>
+    </div>
+  </div>
+
+  <!-- NOTE 01 -->
+  <section>
+    <div class="note-head">
+      <span class="note-no">NOTE 01</span>
+      <h2>지금 바로 — 전공과 딱 맞는 것</h2>
+      <span class="hint">신청 가능 · 마감 임박 순</span>
+    </div>
+    <div class="cards">
+
+      <article class="card best">
+        <div class="card-top">
+          <div>
+            <span class="cat">건축봉사 · 현장 경험</span>
+            <h3><span class="best-tag">최우선 추천</span>한국해비타트 국내 건축봉사 · 한국번개건축</h3>
+          </div>
+          <span class="pill open">신청 가능</span>
+        </div>
+        <div class="dates"><span>번개건축: <b>8월 첫째 주</b> (당일 참가 가능)</span><span>개인 신청 · 봉사확인증 발급</span></div>
+        <p class="desc">실제 집을 짓는 현장에서 일하는 봉사라 건축공학 전공자에게 가장 의미가 큰 활동. 매년 8월 첫째 주 열리는 대규모 집짓기 행사 '한국번개건축'은 개인 참가와 당일치기가 가능합니다.</p>
+        <p class="desc">8월 일정이 아직 달력에 없다면 7월 말 재확인 또는 ☎ 02-3407-1992 문의. 겨울엔 캄보디아 해외건축봉사(개인 신청)도 열립니다.</p>
+        <div class="links">
+          <a class="btn primary" href="https://www.habitat.or.kr/welfare/schedule">봉사 일정 달력 보기</a>
+          <a class="btn" href="https://www.all-con.co.kr/view/contest/530168">겨울 캄보디아 건축봉사</a>
+        </div>
+      </article>
+
+      <article class="card best">
+        <div class="card-top">
+          <div>
+            <span class="cat">설계공모전 · 국토교통부 주최</span>
+            <h3>2026 한국건축문화대상 학생설계공모전 (제35회)</h3>
+          </div>
+          <span class="pill soon">접수 임박 D-11</span>
+        </div>
+        <div class="dates"><span>신청: <b>07.27 – 07.31</b></span><span>제출: 08.26 – 08.28</span><span>총상금 2,800만원 · 장관상</span></div>
+        <p class="desc">1학년 재학생도 참가 가능, 최대 3인 팀 구성 허용. 같은 과 선배와 팀을 짜면 방학 내내 몰입할 프로젝트가 생깁니다. 주제는 '시·공간의 적층'(일반) / '다시, 공공의 한옥'(한옥).</p>
+        <p class="desc">1학년이니 수상보다 "여름 내내 설계 한 번 해본 경험" 자체가 목표 — 이렇게 프레이밍해 주세요.</p>
+        <div class="links">
+          <a class="btn primary" href="https://arch.ajou.ac.kr/arch/board/total-notice.do?mode=view&articleNo=371007">공모전 안내</a>
+          <a class="btn" href="https://www.itbs1.co.kr/news/curationView.html?idxno=2966">관련 기사</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div>
+            <span class="cat">공모전 · 하반기 라인업</span>
+            <h3>정림학생건축상 · 공간국제학생건축상 · 대한건축학회 학생작품전</h3>
+          </div>
+          <span class="pill open">하반기 진행</span>
+        </div>
+        <p class="desc">여름에 작업을 시작해 가을에 제출하는 건축 공모전들. 정림학생건축상 올해 주제는 '우리 어떡해'. 설계공모전과 병행하거나 다음 목표로 잡기 좋습니다.</p>
+        <div class="links">
+          <a class="btn" href="https://www.junglimaward.com/">정림학생건축상</a>
+          <a class="btn" href="https://www.spacea.com/SpaceA2026/Home/Index">공간국제학생건축상</a>
+          <a class="btn" href="https://aiksubmit.cric.or.kr/member/workList">대한건축학회 학생작품전</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- NOTE 02 -->
+  <section>
+    <div class="note-head">
+      <span class="note-no">NOTE 02</span>
+      <h2>신청 없이 오늘부터 — 활동적 경험</h2>
+      <span class="hint">저강도 → 고강도 순서로</span>
+    </div>
+    <div class="cards">
+
+      <article class="card">
+        <div class="card-top">
+          <div>
+            <span class="cat">답사 · 저강도 시작점</span>
+            <h3>서울 건축 답사 프로젝트</h3>
+          </div>
+          <span class="pill always">상시</span>
+        </div>
+        <p class="desc">부천에서 지하철로 다니며 승효상·김수근 건축, 서울도시건축전시관 등을 사진과 스케치로 기록. 집에만 있던 아이가 밖으로 나가는 가장 부담 없는 첫걸음이자, 전공생다운 포트폴리오 재료가 됩니다.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div>
+            <span class="cat">아웃도어 · 국가 인증제</span>
+            <h3>자전거 국토종주 — 아라뱃길에서 부산까지 633km</h3>
+          </div>
+          <span class="pill always">상시 · 무료</span>
+        </div>
+        <div class="dates"><span>출발점: 인천 아라서해갑문 (부천 바로 옆)</span><span>인증수첩으로 구간별 도장</span></div>
+        <p class="desc">부천이 출발점 바로 옆이라 지리적으로 최적. 혼자, 저비용으로, 원하는 만큼 진행할 수 있습니다. 처음엔 아라뱃길–한강 당일 코스로 시작해서, 4박 5일 부산 완주까지 가면 1학년 여름의 확실한 "훈장"이 됩니다.</p>
+        <p class="desc">⚠ 장마·폭염 시기 — 새벽 출발, 침수 구간 사전 확인 필수.</p>
+        <div class="links">
+          <a class="btn primary" href="https://www.bike.go.kr/content.do?key=2006176999884">인증수첩 안내</a>
+          <a class="btn" href="https://www.koreabybike.com/%EA%B2%BD%EB%A1%9C/%EA%B5%AD%ED%86%A0%EC%A2%85%EC%A3%BC/">코스 가이드</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- NOTE 03 -->
+  <section>
+    <div class="note-head">
+      <span class="note-no">NOTE 03</span>
+      <h2>수시로 열리는 것 — 알림 걸어두기</h2>
+    </div>
+    <div class="cards">
+
+      <article class="card">
+        <div class="card-top">
+          <div>
+            <span class="cat">대외활동 플랫폼</span>
+            <h3>"건축·건설" 키워드 알림 설정 (3곳)</h3>
+          </div>
+          <span class="pill always">상시</span>
+        </div>
+        <p class="desc">건설사 서포터즈, 봉사캠프, 해외캠프 운영진 같은 공고가 수시로 올라옵니다. 세 플랫폼에 키워드 알림만 걸어둬도 기회를 놓치지 않습니다.</p>
+        <div class="links">
+          <a class="btn" href="https://linkareer.com/list/activity">링커리어</a>
+          <a class="btn" href="https://www.campuspick.com/activity">캠퍼스픽</a>
+          <a class="btn" href="https://www.wevity.com/index.php?c=find&s=1&gub=1&cidx=24&gp=2">위비티 건축/건설</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <div>
+            <span class="cat">부천시 · 활동비 지급</span>
+            <h3>부천시 청년행정체험단 (하반기)</h3>
+          </div>
+          <span class="pill open">하반기 공고 예정</span>
+        </div>
+        <p class="desc">부천시 거주 19세 이상 대학생 대상, 연 2회(상·하반기) 모집. 하반기 공고가 곧 뜰 시기이니 시청 페이지를 주기적으로 확인하세요. 활동비가 지급됩니다.</p>
+        <div class="links">
+          <a class="btn" href="https://www.bucheon.go.kr/site/homepage/menu/viewMenu?menuid=148006004014001">부천시청 안내 페이지</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- NOTE 04 -->
+  <section>
+    <div class="note-head">
+      <span class="note-no">NOTE 04</span>
+      <h2>올해는 마감 — 내년 봄 캘린더에 등록</h2>
+      <span class="hint">건축공학 1–2학년에게 최적</span>
+    </div>
+    <div class="closed-list">
+      <div class="closed-row">
+        <span class="month">매년 5월</span>
+        <div class="what">
+          <strong>해비타트 해피무브 글로벌 청년봉사단</strong>
+          <span>해외 집짓기 봉사 (인도네시아·베트남) · 전국 대학생 200명</span>
+        </div>
+        <a href="https://habitat.or.kr/news/notice?viewMode=view&ca=&idx=6615">올해 공고 보기</a>
+      </div>
+      <div class="closed-row">
+        <span class="month">매년 5월</span>
+        <div class="what">
+          <strong>재향군인회 대학생 국토대장정</strong>
+          <span>휴전선 전적지 답사 6박 7일 · 전액 무료</span>
+        </div>
+        <a href="https://linkareer.com/activity/322317">안내 보기</a>
+      </div>
+      <div class="closed-row">
+        <span class="month">매년 3–4월</span>
+        <div class="what">
+          <strong>경기청년 갭이어 프로그램</strong>
+          <span>하고 싶은 프로젝트에 최대 500만원 지원 · 경기도 거주 청년</span>
+        </div>
+        <a href="https://youth.gg.go.kr/gg/intro/notice.do?mode=view&articleNo=9063&article.offset=0&articleLimit=10">경기청년포털</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 공정표 -->
+  <section>
+    <div class="note-head">
+      <span class="note-no">SCHEDULE</span>
+      <h2>추천 여름 공정표</h2>
+      <span class="hint">이대로만 하면 방학이 달라집니다</span>
+    </div>
+    <div class="gantt-card">
+      <div class="gantt">
+        <div class="g-corner"></div>
+        <div class="g-week">7월 3주</div>
+        <div class="g-week">7월 4주</div>
+        <div class="g-week">8월 1주</div>
+        <div class="g-week">8월 2주</div>
+        <div class="g-week">8월 3주</div>
+        <div class="g-week">8월 4주</div>
+
+        <div class="g-label">건축 답사 + 라이딩 워밍업</div>
+        <div class="g-track"><div class="g-bar field" style="grid-column: 1 / 3;">몸 풀기</div></div>
+
+        <div class="g-label">공모전 참가 신청</div>
+        <div class="g-track"><div class="g-bar major" style="grid-column: 2 / 3;">7/27–31</div></div>
+
+        <div class="g-label">번개건축 봉사</div>
+        <div class="g-track"><div class="g-bar serve" style="grid-column: 3 / 4;">8월 1주</div></div>
+
+        <div class="g-label">자전거 국토종주</div>
+        <div class="g-track"><div class="g-bar field" style="grid-column: 4 / 6;">부천 → 부산</div></div>
+
+        <div class="g-label">공모전 작품 마무리·제출</div>
+        <div class="g-track"><div class="g-bar major" style="grid-column: 5 / 7;">~8/28 제출</div></div>
+      </div>
+      <div class="g-legend">
+        <span><i style="background: var(--blue);"></i>전공·공모전</span>
+        <span><i style="background: var(--open);"></i>봉사</span>
+        <span><i style="background: var(--sand);"></i>아웃도어</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="src">
+      출처:
+      <a href="https://www.habitat.or.kr/welfare/schedule">한국해비타트</a> ·
+      <a href="https://arch.ajou.ac.kr/arch/board/total-notice.do?mode=view&articleNo=371007">한국건축문화대상 공모전 안내</a> ·
+      <a href="https://www.itbs1.co.kr/news/curationView.html?idxno=2966">국토교통신문</a> ·
+      <a href="https://www.bike.go.kr/content.do?key=2006176999884">자전거행복나눔</a> ·
+      <a href="https://youth.gg.go.kr/gg/intro/notice.do?mode=view&articleNo=9063&article.offset=0&articleLimit=10">경기청년포털</a> ·
+      <a href="https://www.bucheon.go.kr/site/homepage/menu/viewMenu?menuid=148006004014001">부천시청</a> ·
+      <a href="https://linkareer.com/list/activity">링커리어</a> ·
+      <a href="https://www.wevity.com/index.php?c=find&s=1&gub=1&cidx=24&gp=2">위비티</a> ·
+      <a href="https://www.junglimaward.com/">정림학생건축상</a> ·
+      <a href="https://www.spacea.com/SpaceA2026/Home/Index">공간국제학생건축상</a>
+    </div>
+    <div class="stamp">DRAWN 2026-07-16 KST · 마감일은 주최 측 사정으로 바뀔 수 있으니 신청 전 공식 페이지에서 재확인하세요.</div>
+  </footer>
+
+</div>
+
+</html>
