@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>묵호 · 울릉도 3박4일 여행 경비 정산</title>
+<style>
+  :root{
+    --navy:#123c50;
+    --deep:#0d2b3a;
+    --teal:#1a7f95;
+    --sand:#e8b04b;
+    --paper:#f4f1ea;
+    --card:#ffffff;
+    --ink:#22333c;
+    --sub:#7c8b93;
+    --line:#e6e1d6;
+    --red:#d64545;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:"Pretendard","Segoe UI","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    padding:28px 16px 60px;
+  }
+  .wrap{max-width:860px;margin:0 auto;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--card);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 30px rgba(13,43,58,.12);
+  }
+  .hero svg{display:block;width:100%;height:auto;}
+  .hero-text{padding:26px 34px 30px;text-align:center;}
+  .hero-text .eyebrow{
+    font-size:13px;letter-spacing:.35em;color:var(--teal);
+    font-weight:700;text-transform:uppercase;margin-bottom:8px;
+  }
+  .hero-text h1{
+    font-size:clamp(24px,4.5vw,34px);
+    color:var(--deep);font-weight:800;letter-spacing:-.02em;
+  }
+  .hero-text .dates{margin-top:10px;color:var(--sub);font-size:15px;}
+  .hero-text .dates b{color:var(--ink);font-weight:600;}
+
+  /* ---------- SUMMARY ---------- */
+  .summary{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:14px;margin:22px 0;
+  }
+  .stat{
+    background:var(--card);border-radius:16px;padding:20px 22px;
+    box-shadow:0 4px 16px rgba(13,43,58,.07);
+    border-top:4px solid var(--teal);
+  }
+  .stat.highlight{border-top-color:var(--sand);}
+  .stat .label{font-size:13px;color:var(--sub);font-weight:600;margin-bottom:6px;}
+  .stat .value{font-size:clamp(19px,3vw,25px);font-weight:800;color:var(--deep);
+    font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+  .stat .value small{font-size:.6em;font-weight:600;color:var(--sub);margin-left:2px;}
+  .stat.highlight .value{color:#b07a1e;}
+
+  /* ---------- SECTION CARD ---------- */
+  .day{
+    background:var(--card);border-radius:16px;
+    box-shadow:0 4px 16px rgba(13,43,58,.07);
+    margin-bottom:18px;overflow:hidden;
+  }
+  .day-head{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    padding:16px 24px;
+    background:linear-gradient(90deg,#f0f7f9,#ffffff);
+    border-bottom:1px solid var(--line);
+  }
+  .day-chip{
+    background:var(--teal);color:#fff;font-weight:800;font-size:13px;
+    border-radius:8px;padding:4px 10px;letter-spacing:.02em;flex:none;
+  }
+  .day-chip.common{background:var(--navy);}
+  .day-title{font-weight:700;font-size:16px;color:var(--deep);}
+  .loc{
+    font-size:12px;font-weight:700;color:var(--teal);
+    background:#e3f1f4;border-radius:999px;padding:3px 11px;
+  }
+  .day-sub{
+    margin-left:auto;font-weight:800;font-size:16px;color:var(--deep);
+    font-variant-numeric:tabular-nums;
+  }
+  .day-sub small{font-weight:600;color:var(--sub);font-size:12px;margin-right:6px;}
+
+  table{width:100%;border-collapse:collapse;}
+  td{padding:11px 24px;font-size:15px;vertical-align:top;}
+  tr + tr td{border-top:1px dashed var(--line);}
+  td.item .note{display:block;font-size:12.5px;color:var(--sub);margin-top:2px;}
+  td.amt{
+    text-align:right;font-variant-numeric:tabular-nums;
+    font-weight:600;white-space:nowrap;width:130px;color:var(--ink);
+  }
+  td.amt::after{content:"원";font-size:.85em;color:var(--sub);margin-left:2px;font-weight:500;}
+
+  /* ---------- SETTLEMENT ---------- */
+  .settle{
+    position:relative;
+    background:linear-gradient(135deg,#0d2b3a 0%,#155e75 100%);
+    border-radius:20px;color:#fff;
+    padding:34px 30px 30px;text-align:center;
+    margin:26px 0 18px;overflow:hidden;
+    box-shadow:0 10px 34px rgba(13,43,58,.28);
+  }
+  .settle .waves{position:absolute;left:0;right:0;bottom:0;opacity:.35;pointer-events:none;}
+  .settle .formula{font-size:15px;color:#bcd9e2;font-variant-numeric:tabular-nums;}
+  .settle .per{
+    font-size:clamp(34px,6vw,48px);font-weight:800;margin:10px 0 4px;
+    font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+  }
+  .settle .per small{font-size:.45em;font-weight:600;color:#cfe4ea;}
+  .settle .who{font-size:14px;color:#bcd9e2;}
+  .settle .badge{
+    display:inline-block;background:var(--sand);color:#3d2c07;
+    font-weight:800;font-size:13px;border-radius:999px;
+    padding:5px 16px;margin-bottom:14px;letter-spacing:.06em;
+  }
+
+  .verify{
+    text-align:center;font-size:13px;color:var(--sub);
+    font-variant-numeric:tabular-nums;
+  }
+  .verify b{color:var(--teal);}
+
+  @media (max-width:560px){
+    .summary{grid-template-columns:1fr;}
+    td{padding:10px 16px;}
+    .day-head{padding:14px 16px;}
+    .day-sub{width:100%;text-align:right;}
+  }
+  @media print{
+    body{background:#fff;padding:0;}
+    .hero,.day,.stat,.settle{box-shadow:none;border:1px solid var(--line);}
+    .settle{background:var(--deep) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ================= HERO ================= -->
+  <div class="hero">
+    <svg viewBox="0 0 1200 330" role="img" aria-label="묵호 등대와 울릉도 바다 풍경 일러스트">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#8ec3d6"/>
+          <stop offset=".62" stop-color="#d9edf3"/>
+          <stop offset="1" stop-color="#f9e8c8"/>
+        </linearGradient>
+        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2f8aa0"/>
+          <stop offset="1" stop-color="#155e75"/>
+        </linearGradient>
+      </defs>
+      <!-- sky & sun -->
+      <rect width="1200" height="220" fill="url(#sky)"/>
+      <circle cx="905" cy="92" r="46" fill="#ffc46b" opacity=".9"/>
+      <circle cx="905" cy="92" r="66" fill="#ffc46b" opacity=".22"/>
+      <!-- Ulleungdo silhouette (right) -->
+      <path d="M760 220 L830 130 L868 168 L910 108 L965 172 L1005 140 L1080 220 Z" fill="#2e6577" opacity=".85"/>
+      <path d="M1040 220 L1090 176 L1128 196 L1170 164 L1200 220 Z" fill="#3d7488" opacity=".7"/>
+      <!-- sea -->
+      <rect y="200" width="1200" height="130" fill="url(#sea)"/>
+      <path d="M0 212 Q60 202 120 212 T240 212 T360 212 T480 212 T600 212 T720 212 T840 212 T960 212 T1080 212 T1200 212 V330 H0 Z" fill="#1d7089" opacity=".8"/>
+      <path d="M0 250 Q75 240 150 250 T300 250 T450 250 T600 250 T750 250 T900 250 T1050 250 T1200 250 V330 H0 Z" fill="#155e75" opacity=".85"/>
+      <path d="M0 292 Q90 282 180 292 T360 292 T540 292 T720 292 T900 292 T1080 292 T1260 292 V330 H0 Z" fill="#0f4d61"/>
+      <!-- ferry -->
+      <g transform="translate(600 236)">
+        <path d="M-46 10 L46 10 L34 26 L-34 26 Z" fill="#25455336"/>
+        <path d="M-44 8 L44 8 L33 22 L-33 22 Z" fill="#f4f1ea"/>
+        <rect x="-26" y="-6" width="52" height="14" rx="3" fill="#d64545"/>
+        <rect x="-14" y="-16" width="28" height="10" rx="2" fill="#f4f1ea"/>
+        <rect x="-8" y="-24" width="5" height="8" rx="1" fill="#123c50"/>
+      </g>
+      <!-- rocks + lighthouse (left, Mukho) -->
+      <path d="M0 330 L0 236 L54 208 L120 232 L172 214 L228 244 L252 330 Z" fill="#2b4f60"/>
+      <path d="M0 330 L0 266 L44 246 L108 268 L160 254 L206 282 L218 330 Z" fill="#1e3d4c"/>
+      <g transform="translate(104 96)">
+        <path d="M-15 116 L15 116 L10 24 L-10 24 Z" fill="#fdfcf8"/>
+        <rect x="-11" y="34" width="22" height="9" fill="#d64545"/>
+        <rect x="-10" y="58" width="20" height="9" fill="#d64545"/>
+        <rect x="-13" y="14" width="26" height="12" rx="2" fill="#d64545"/>
+        <rect x="-9" y="2" width="18" height="13" rx="2" fill="#fff3cf"/>
+        <path d="M-12 2 L12 2 L0 -10 Z" fill="#d64545"/>
+        <circle cx="0" cy="8" r="4" fill="#ffc46b"/>
+      </g>
+      <!-- gulls -->
+      <path d="M330 96 q9 -9 18 0 q9 -9 18 0" stroke="#4c7386" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M412 66 q7 -7 14 0 q7 -7 14 0" stroke="#4c7386" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M290 140 q6 -6 12 0 q6 -6 12 0" stroke="#4c7386" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="hero-text">
+      <div class="eyebrow">TRAVEL EXPENSE REPORT</div>
+      <h1>묵호 · 울릉도 3박 4일 여행 경비 정산</h1>
+      <div class="dates"><b>2026. 7. 25 (토) ~ 7. 28 (화)</b> &nbsp;·&nbsp; 2인 동행 &nbsp;·&nbsp; 묵호 → 울릉도 → 묵호</div>
+    </div>
+  </div>
+
+  <!-- ================= SUMMARY ================= -->
+  <div class="summary">
+    <div class="stat">
+      <div class="label">총 지출</div>
+      <div class="value">1,979,000<small>원</small></div>
+    </div>
+    <div class="stat highlight">
+      <div class="label">1인 부담금 (÷2)</div>
+      <div class="value">989,500<small>원</small></div>
+    </div>
+    <div class="stat">
+      <div class="label">지출 항목</div>
+      <div class="value">32<small>건 / 5개 분류</small></div>
+    </div>
+  </div>
+
+  <!-- ================= 공통 ================= -->
+  <div class="day">
+    <div class="day-head">
+      <span class="day-chip common">공통</span>
+      <span class="day-title">패키지 · 교통 · 숙박</span>
+      <span class="day-sub"><small>소계</small>1,277,000원</span>
+    </div>
+    <table>
+      <tr><td class="item">🎫 울릉도 패키지</td><td class="amt">960,000</td></tr>
+      <tr><td class="item">🚄 KTX 왕복<span class="note">61,400 + 73,600</span></td><td class="amt">135,000</td></tr>
+      <tr><td class="item">🏨 묵호 숙소</td><td class="amt">182,000</td></tr>
+    </table>
+  </div>
+
+  <!-- ================= DAY 1 ================= -->
+  <div class="day">
+    <div class="day-head">
+      <span class="day-chip">DAY 1</span>
+      <span class="day-title">7/25 (토)</span>
+      <span class="loc">묵호</span>
+      <span class="day-sub"><small>소계</small>134,550원</span>
+    </div>
+    <table>
+      <tr><td class="item">🍜 장칼국수</td><td class="amt">19,000</td></tr>
+      <tr><td class="item">🌽 옥수수</td><td class="amt">5,000</td></tr>
+      <tr><td class="item">🚕 택시</td><td class="amt">7,300</td></tr>
+      <tr><td class="item">🏪 편의점</td><td class="amt">14,000</td></tr>
+      <tr><td class="item">🕳️ 천곡동굴</td><td class="amt">10,000</td></tr>
+      <tr><td class="item">🏪 편의점</td><td class="amt">13,150</td></tr>
+      <tr><td class="item">🍖 족발</td><td class="amt">55,000</td></tr>
+      <tr><td class="item">🏪 편의점</td><td class="amt">11,100</td></tr>
+    </table>
+  </div>
+
+  <!-- ================= DAY 2 ================= -->
+  <div class="day">
+    <div class="day-head">
+      <span class="day-chip">DAY 2</span>
+      <span class="day-title">7/26 (일)</span>
+      <span class="loc">울릉도</span>
+      <span class="day-sub"><small>소계</small>263,050원</span>
+    </div>
+    <table>
+      <tr><td class="item">🚕 택시</td><td class="amt">6,700</td></tr>
+      <tr><td class="item">🍦 붕어싸만코</td><td class="amt">5,000</td></tr>
+      <tr><td class="item">💧 생수 · 맥주<span class="note">12,000 + 16,250</span></td><td class="amt">28,250</td></tr>
+      <tr><td class="item">☕ 컴포즈커피</td><td class="amt">6,100</td></tr>
+      <tr><td class="item">🥗 삼나물무침 + 녹두</td><td class="amt">40,000</td></tr>
+      <tr><td class="item">🍽️ 울릉가</td><td class="amt">177,000</td></tr>
+    </table>
+  </div>
+
+  <!-- ================= DAY 3 ================= -->
+  <div class="day">
+    <div class="day-head">
+      <span class="day-chip">DAY 3</span>
+      <span class="day-title">7/27 (월)</span>
+      <span class="loc">울릉도</span>
+      <span class="day-sub"><small>소계</small>134,400원</span>
+    </div>
+    <table>
+      <tr><td class="item">🏪 CU 편의점</td><td class="amt">5,400</td></tr>
+      <tr><td class="item">🎫 패키지 옵션</td><td class="amt">40,000</td></tr>
+      <tr><td class="item">🥞 더덕전</td><td class="amt">30,000</td></tr>
+      <tr><td class="item">🍚 다애식당</td><td class="amt">49,000</td></tr>
+      <tr><td class="item">🍔 롯데리아</td><td class="amt">5,500</td></tr>
+      <tr><td class="item">🍧 마트 팥빙수</td><td class="amt">4,500</td></tr>
+    </table>
+  </div>
+
+  <!-- ================= DAY 4 ================= -->
+  <div class="day">
+    <div class="day-head">
+      <span class="day-chip">DAY 4</span>
+      <span class="day-title">7/28 (화)</span>
+      <span class="loc">울릉도 → 묵호</span>
+      <span class="day-sub"><small>소계</small>170,000원</span>
+    </div>
+    <table>
+      <tr><td class="item">🥤 더덕쥬스</td><td class="amt">10,000</td></tr>
+      <tr><td class="item">🚢 섬일주 유람선</td><td class="amt">54,000</td></tr>
+      <tr><td class="item">🍜 비빔국수</td><td class="amt">29,000</td></tr>
+      <tr><td class="item">☕ 커피 + 쥐포</td><td class="amt">16,000</td></tr>
+      <tr><td class="item">🍧 묵호 팥빙수</td><td class="amt">11,000</td></tr>
+      <tr><td class="item">🚕 어달 택시</td><td class="amt">5,700</td></tr>
+      <tr><td class="item">🍺 이마트 맥주</td><td class="amt">8,000</td></tr>
+      <tr><td class="item">🚕 묵호역 택시</td><td class="amt">5,300</td></tr>
+      <tr><td class="item">🍗 도마치킨</td><td class="amt">31,000</td></tr>
+    </table>
+  </div>
+
+  <!-- ================= SETTLEMENT ================= -->
+  <div class="settle">
+    <div class="badge">최종 정산</div>
+    <div class="formula">총 지출 1,979,000원 ÷ 2명</div>
+    <div class="per">989,500 <small>원 / 1인</small></div>
+    <div class="who">3박 4일 · 2026. 7. 25 ~ 7. 28 · 묵호 & 울릉도</div>
+    <svg class="waves" viewBox="0 0 1200 60" preserveAspectRatio="none" height="46" width="100%">
+      <path d="M0 30 Q75 12 150 30 T300 30 T450 30 T600 30 T750 30 T900 30 T1050 30 T1200 30 V60 H0 Z" fill="#8ec3d6"/>
+    </svg>
+  </div>
+
+  <div class="verify">
+    검산: 공통 1,277,000 + 1일차 134,550 + 2일차 263,050 + 3일차 134,400 + 4일차 170,000 = <b>1,979,000원 ✓</b>
+  </div>
+
+</div>
+</body>
+</html>
